@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Oil Field Arena</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #000; font-family: system-ui, sans-serif; color: #fff; user-select: none; }
+  canvas { display: block; }
+  #hud, #vignette, #screen { position: fixed; inset: 0; pointer-events: none; }
+  #vignette { box-shadow: inset 0 0 160px 70px rgba(200, 0, 0, 0.9); opacity: 0; }
+  #crosshair { position: fixed; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #fff; box-shadow: 0 0 2px #000; }
+  #hit { position: fixed; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px; opacity: 0; }
+  #hit::before, #hit::after { content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 100%; margin-left: -1px; background: #fff; box-shadow: 0 0 2px #000; }
+  #hit::before { transform: rotate(45deg); }
+  #hit::after { transform: rotate(-45deg); }
+  .box { position: absolute; bottom: 24px; padding: 8px 14px; background: rgba(0, 0, 0, 0.45); border-radius: 6px; font-size: 22px; font-weight: 600; text-shadow: 0 1px 2px #000; }
+  #hpbox { left: 24px; width: 220px; }
+  #hpbar { height: 10px; background: #333; margin-top: 6px; }
+  #hp { height: 100%; width: 100%; background: #e33; }
+  #ammo { right: 24px; font-size: 28px; }
+  #stats { left: 50%; transform: translateX(-50%); font-size: 18px; }
+  #screen { display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.55); text-align: center; }
+  #screen[hidden] { display: none; }
+  #title { font-size: 48px; margin: 0 0 12px; }
+  #sub { font-size: 20px; opacity: 0.85; margin: 0; }
+  #help { font-size: 14px; opacity: 0.6; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div id="hud">
+  <div id="crosshair"></div><div id="hit"></div>
+  <div class="box" id="hpbox"><span id="hptext">100</span><div id="hpbar"><div id="hp"></div></div></div>
+  <div class="box" id="stats"><span id="kills">0</span> kills &middot; <span id="timer">0:00</span></div>
+  <div class="box" id="ammo">30 / 90</div>
+</div>
+<div id="vignette"></div>
+<div id="screen">
+  <h1 id="title">Click to play</h1>
+  <p id="sub">Kill 25 bots as fast as you can</p>
+  <p id="help">WASD move &middot; Mouse aim &middot; Click shoot &middot; R reload &middot; Shift sprint &middot; Space jump &middot; Esc unlock</p>
+</div>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/" } }
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
